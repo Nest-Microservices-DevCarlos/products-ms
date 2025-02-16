@@ -6,10 +6,11 @@ interface EnvVars {
     DATABASE_URL: string;
 }
 
-const envsSchema = joi.object({
-    PORT: joi.number().required(),
-    DATABASE_URL: joi.string().required(),
-})
+const envsSchema = joi
+    .object({
+        PORT: joi.number().required(),
+        DATABASE_URL: joi.string().required(),
+    })
     .unknown(true);
 
 const { error, value } = envsSchema.validate(process.env);
@@ -22,6 +23,5 @@ const envVars: EnvVars = value;
 
 export const envs = {
     port: envVars.PORT,
-    databaseUrl: envVars.DATABASE_URL
-}
-
+    databaseUrl: envVars.DATABASE_URL,
+};
